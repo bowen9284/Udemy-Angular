@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { StarWarsService } from 'app/star-wars.service';
 
 @Component({
   selector: 'app-item',
@@ -7,10 +8,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
   @Input() character;
+  swService: StarWarsService;
 
-  constructor() { }
+  constructor(swService: StarWarsService) {
+    this.swService = swService;
+  }
 
   ngOnInit() {
+  }
+
+  onAssign(side) {
+    this.swService.onSideChosen({name: this.character.name, side: side})
   }
 
 }
